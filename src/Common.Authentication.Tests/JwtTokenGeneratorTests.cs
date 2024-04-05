@@ -19,6 +19,8 @@ public class JwtTokenGeneratorTests
             UserId = Guid.NewGuid(),
             RolesIds = new List<Guid> { Guid.NewGuid() }
         };
+        Environment.SetEnvironmentVariable("JWT_SECURITY_KEY", "h9m8x9lQQrSrC6Oi4EJ6B67LSOX3DbXq7I9V2tld6mw=");
+
 
         var loggerMock = new Mock<ILogger<JwtTokenGenerator>>();
 
@@ -37,6 +39,8 @@ public class JwtTokenGeneratorTests
     public async Task GenerateJwtToken_ShouldFail_When_JwtTokenRequestIsEmpty()
     {
         // Arrange
+        Environment.SetEnvironmentVariable("JWT_SECURITY_KEY", "h9m8x9lQQrSrC6Oi4EJ6B67LSOX3DbXq7I9V2tld6mw=");
+
         var jwtTokenRequest = new JwtTokenRequest(); // Empty JwtTokenRequest
 
         var loggerMock = new Mock<ILogger<JwtTokenGenerator>>();
@@ -50,6 +54,7 @@ public class JwtTokenGeneratorTests
     public async Task ValidateJwtToken_ShouldValidateToken()
     {
         // Arrange
+        Environment.SetEnvironmentVariable("JWT_SECURITY_KEY", "h9m8x9lQQrSrC6Oi4EJ6B67LSOX3DbXq7I9V2tld6mw=");
         var jwtTokenRequest = new JwtTokenRequest
         {
             UserId = Guid.NewGuid(),
@@ -78,6 +83,7 @@ public class JwtTokenGeneratorTests
     public async Task ValidateJwtToken_ShouldFail_When_TokenIsInvalid()
     {
         // Arrange
+        Environment.SetEnvironmentVariable("JWT_SECURITY_KEY", "h9m8x9lQQrSrC6Oi4EJ6B67LSOX3DbXq7I9V2tld6mw=");
         var jwtTokenRequest = new JwtTokenRequest
         {
             UserId = Guid.NewGuid(),
@@ -104,6 +110,7 @@ public class JwtTokenGeneratorTests
     public Task ValidateJwtToken_ShouldFail_When_TokenIsTampered()
     {
         // Arrange
+        Environment.SetEnvironmentVariable("JWT_SECURITY_KEY", "h9m8x9lQQrSrC6Oi4EJ6B67LSOX3DbXq7I9V2tld6mw=");
         var jwtTokenRequest = new JwtTokenRequest
         {
             UserId = Guid.NewGuid(),
